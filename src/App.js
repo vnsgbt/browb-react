@@ -1,27 +1,17 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
+import React, { Component , PropTypes } from 'react'
 
+import logo from './logo.svg'
 import './App.css';
+
 import Counter from './components/Counter'
 
 class App extends Component {
-
-  constructor(props) {
-    super(props)
-    this.state = { countValue: 7 }
-    this.increment = this.increment.bind(this)
-    this.decrement = this.decrement.bind(this)
-  }
-
-  increment() {
-    this.setState({countValue: this.state.countValue + 1})
-  }
-
-  decrement() {
-    this.setState({countValue: this.state.countValue - 1})
+  static propTypes = {
+    appstore: PropTypes.object.isRequired   
   }
 
   render() {
+    const { appstore } = this.props
     return (
       <div className="App">
         <div className="App-header">
@@ -29,9 +19,9 @@ class App extends Component {
           <h2>Welcome to React</h2>
         </div>
         <Counter 
-          value={this.state.countValue}
-          onIncrement={this.increment}
-          onDecrement={this.decrement} />
+          value={appstore.getState()}
+          onIncrement={() => appstore.dispatch({ type: 'INCREMENT' })}
+          onDecrement={() => appstore.dispatch({ type: 'DECREMENT' })} />
       </div>
     );
   }
