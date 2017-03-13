@@ -1,20 +1,23 @@
 
-## Add component
-
-Create a new component at:
-
-- `components/Counter.js`
+## Use prop
 
 ```js
 // components/Counter.js
-import React, { Component } from 'react'
+import React, { Component, PropTypes } from 'react'
 
 class Counter extends Component {
-
+  
+  // Declare props types
+  static propTypes = {
+    value: PropTypes.number.isRequired
+  }
+  
   render() {
+    // Get value from component's props
+    const { value } = this.props
     return (
       <p>
-        Clicked: times
+        Clicked: {value} times
         {' '}
         <button> + </button>
         {' '}
@@ -31,28 +34,9 @@ class Counter extends Component {
 export default Counter
 ```
 
-### Render component:
+## Pass props to component
 
 ```js
 // App.js
 
-// import Counter
-import Counter from './components/Counter'
-
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
-        </div>
-
-        {/*Render Counter*/}
-        <Counter />
-        
-      </div>
-    );
-  }
-}
 ```
