@@ -1,11 +1,18 @@
-import React, { Component } from 'react'
+import React, { Component, PropTypes } from 'react'
 
 class Counter extends Component {
 
+  // Declare props types
+  static propTypes = {
+    value: PropTypes.number.isRequired
+  }
+  
   render() {
+    // Get value from component's props
+    const { value } = this.props
     return (
       <p>
-        Clicked: times
+        Clicked: {value} times
         {' '}
         <button> + </button>
         {' '}
